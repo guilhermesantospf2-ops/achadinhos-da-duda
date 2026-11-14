@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Achadinhos da Duda 💙🛍️ — Link Oficial da Bio</title>
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card: #151c2c;
+      --border: #26324d;
+      --brand: #0ea5e9;
+      --shopee: #ee4d2d;
+      --text: #ffffff;
+      --muted: #94a3b8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: radial-gradient(circle at top, #0f2942 0%, var(--bg) 55%);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 24px 14px 60px;
+    }
+    .wrap { max-width: 520px; margin: 0 auto; }
+    .profile { text-align: center; margin-bottom: 20px; }
+    .avatar {
+      width: 84px; height: 84px; border-radius: 50%; margin: 0 auto 10px;
+      background: linear-gradient(135deg, #0284c7, #38bdf8);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 38px; box-shadow: 0 8px 25px rgba(14, 165, 233, 0.45);
+      border: 3px solid rgba(255,255,255,0.35);
+    }
+    .profile h1 { font-size: 22px; font-weight: 800; margin-bottom: 6px; }
+    .profile p { font-size: 13.5px; color: #cbd5e1; line-height: 1.45; }
+    .search-box {
+      background: var(--card); border: 2px solid var(--brand);
+      border-radius: 16px; padding: 14px; margin-bottom: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+    }
+    .search-label {
+      font-size: 12px; font-weight: 800; color: #7dd3fc;
+      text-transform: uppercase; letter-spacing: 0.5px;
+      margin-bottom: 8px; display: block; text-align: center;
+    }
+    .search-row { display: flex; gap: 8px; }
+    .search-row input {
+      flex: 1; background: #090d16; border: 1px solid var(--border);
+      color: #fff; padding: 13px 14px; border-radius: 12px;
+      font-size: 16px; font-weight: 700; text-align: center; outline: none;
+    }
+    .search-row button {
+      background: linear-gradient(135deg, var(--shopee), #ff7337);
+      border: none; color: #fff; font-weight: 800; font-size: 13px;
+      padding: 0 18px; border-radius: 12px; cursor: pointer;
+    }
+    .list { display: flex; flex-direction: column; gap: 11px; }
+    .item {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 11px 12px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px; text-decoration: none; color: #fff;
+      transition: transform 0.15s ease, border-color 0.15s ease;
+    }
+    .item:hover { transform: translateY(-2px); border-color: var(--brand); }
+    .thumb-wrap {
+      position: relative; width: 58px; height: 74px; border-radius: 10px;
+      overflow: hidden; background: #090d16; flex-shrink: 0;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+    .thumb-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .code-badge {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: rgba(238, 77, 45, 0.95); color: #fff;
+      font-weight: 900; font-size: 11px; text-align: center; padding: 2px 0;
+    }
+    .item-info { flex: 1; min-width: 0; }
+    .item-title { font-size: 14.5px; font-weight: 700; margin-bottom: 4px; line-height: 1.3; }
+    .item-sub { font-size: 12px; color: var(--muted); }
+    .cta-btn {
+      background: linear-gradient(135deg, var(--shopee), #ff6b4a);
+      color: #fff; font-weight: 800; font-size: 11.5px;
+      padding: 10px 12px; border-radius: 10px; white-space: nowrap;
+      box-shadow: 0 4px 12px rgba(238, 77, 45, 0.3);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="profile">
+      <div class="avatar">👩🏻</div>
+      <h1>Achadinhos da Duda 💙🛍️</h1>
+      <p>Oiii, eu sou a Duda! ❤️ Digite abaixo o número do produto que você viu no vídeo para abrir direto na Shopee com desconto!</p>
+    </div>
+
+    <div class="search-box">
+      <span class="search-label">👇 Digite o Código do Vídeo (Ex: 001, 002...)</span>
+      <form class="search-row" onsubmit="goDirect(event)">
+        <input id="codeInput" type="text" placeholder="Ex: 001 ou nome do produto..." oninput="filterList()" />
+        <button type="submit">ABRIR ➔</button>
+      </form>
+    </div>
+
+    <div id="catalogList" class="list"></div>
+  </div>
+
+  <script>
+    const allProducts = [{"code":"015","productNamePt":"Body Modelador Colombiano com Fecho","category":"Moda Íntima & Modeladores","estimatedPriceBr":"R$ 69,90 a R$ 129,90","targetUrl":"https://s.shopee.com.br/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fsearch%3Fkeyword%3Dbody%2520modelador%2520colombiano%2520cinta%2520compress%25C3%25A3o&affiliate_id=18397081354&sub_id=vitrine_015","thumb":"thumbs/015.jpg"},{"code":"014","productNamePt":"Body Modelador Regata Alça Fina","category":"Moda Íntima & Modeladores","estimatedPriceBr":"R$ 39,90 a R$ 69,90","targetUrl":"https://s.shopee.com.br/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fsearch%3Fkeyword%3Dbody%2520modelador%2520feminino%2520regata%2520al%25C3%25A7a%2520fina&affiliate_id=18397081354&sub_id=vitrine_014","thumb":"thumbs/014.jpg"},{"code":"013","productNamePt":"Shorts Masculino 2 em 1 Fitness","category":"Moda Fitness","estimatedPriceBr":"R$ 39,90 a R$ 69,90","targetUrl":"https://s.shopee.com.br/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fsearch%3Fkeyword%3Dshorts%2520masculino%25202%2520em%25201%2520academia%2520com%2520bolso&affiliate_id=18397081354&sub_id=vitrine_013","thumb":"thumbs/013.jpg"},{"code":"012","productNamePt":"Vestido Long Midi Estampado","category":"Moda Feminina","estimatedPriceBr":"R$ 49,90 a R$ 89,90","targetUrl":"https://s.shopee.com.br/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fsearch%3Fkeyword%3Dvestido%2520long%2520midi%2520feminino%2520estampado%2520casual&affiliate_id=18397081354&sub_id=vitrine_012","thumb":"thumbs/012.jpg"},{"code":"011","productNamePt":"Vestido Longo Estampado Confortável","category":"Moda Feminina","estimatedPriceBr":"R$ 49,90 a R$ 89,90","targetUrl":"https://s.shopee.com.br/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fsearch%3Fkeyword%3Dvestido%2520longo%2520feminino%2520casual%2520estampado&affiliate_id=18397081354&sub_id=vitrine_011","thumb":"thumbs/011.jpg"},{"code":"010","productNamePt":"Mini Motosserra Elétrica a Bateria","category":"Ferramentas & DIY","estimatedPriceBr":"R$ 89,90 a R$ 149,90","targetUrl":"https://s.shopee.com.br/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fsearch%3Fkeyword%3Dmini%2520motosserra%2520eletrica%2520a%2520bateria%25206%2520polegadas&affiliate_id=18397081354&sub_id=vitrine_010","thumb":"thumbs/010.jpg"},{"code":"009","productNamePt":"Massageador Facial Quente e Frio 7in1","category":"Beleza & Autocuidado","estimatedPriceBr":"R$ 79,90 a R$ 139,90","targetUrl":"https://s.shopee.com.br/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fsearch%3Fkeyword%3Dmassageador%2520facial%2520quente%2520e%2520frio%2520led&affiliate_id=18397081354&sub_id=vitrine_009","thumb":"thumbs/009.jpg"},{"code":"008","productNamePt":"Suporte de Celular Asas de Anjo","category":"Tech & Celular","estimatedPriceBr":"R$ 19,90 a R$ 39,90","targetUrl":"https://s.shopee.com.br/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fsearch%3Fkeyword%3Dsuporte%2520de%2520celular%2520asas%2520de%2520anjo&affiliate_id=18397081354&sub_id=vitrine_008","thumb":"thumbs/008.jpg"},{"code":"007","productNamePt":"Ferro de Passar a Vapor Potente","category":"Casa e Utilidades","estimatedPriceBr":"R$ 89,90 a R$ 149,90","targetUrl":"https://s.shopee.com.br/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fsearch%3Fkeyword%3Dferro%2520de%2520passar%2520a%2520vapor%2520potente&affiliate_id=18397081354&sub_id=vitrine_007","thumb":"thumbs/007.jpg"},{"code":"006","productNamePt":"Kit Lixeira com Escova Sanitária","category":"Banheiro","estimatedPriceBr":"R$ 49,90 a R$ 89,90","targetUrl":"https://s.shopee.com.br/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fsearch%3Fkeyword%3Dlixeira%2520de%2520banheiro%2520com%2520escova%2520sanitaria%2520embutida&affiliate_id=18397081354&sub_id=vitrine_006","thumb":"thumbs/006.jpg"},{"code":"005","productNamePt":"Organizador de Temperos e Latas 3 Níveis","category":"Organização","estimatedPriceBr":"R$ 35,00 a R$ 65,00","targetUrl":"https://s.shopee.com.br/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fsearch%3Fkeyword%3Dorganizador%2520de%2520temperos%25203%2520niveis%2520expansivel&affiliate_id=18397081354&sub_id=vitrine_005","thumb":"thumbs/005.jpg"},{"code":"004","productNamePt":"Vassoura com Pá Vertical Retrátil","category":"Casa & Limpeza","estimatedPriceBr":"R$ 39,90 a R$ 69,90","targetUrl":"https://s.shopee.com.br/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fsearch%3Fkeyword%3Dvassoura%2520com%2520pa%2520vertical%2520retratil&affiliate_id=18397081354&sub_id=vitrine_004","thumb":"thumbs/004.jpg"},{"code":"003","productNamePt":"Fatiador e Picador de Legumes","category":"Cozinha","estimatedPriceBr":"R$ 34,90 a R$ 69,90","targetUrl":"https://s.shopee.com.br/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fsearch%3Fkeyword%3Dfatiador%2520picador%2520de%2520legumes%2520multifuncional&affiliate_id=18397081354&sub_id=vitrine_003","thumb":"thumbs/003.jpg"},{"code":"002","productNamePt":"Mini Mop De Limpeza Portátil","category":"Casa & Limpeza","estimatedPriceBr":"R$ 19,90 a R$ 39,90","targetUrl":"https://s.shopee.com.br/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fsearch%3Fkeyword%3Dmini%2520mop%2520de%2520limpeza%2520portatil&affiliate_id=18397081354&sub_id=vitrine_002","thumb":"thumbs/002.jpg"},{"code":"001","productNamePt":"Escorredor Retrátil de Pia Ajustável","category":"Cozinha","estimatedPriceBr":"R$ 19,90 a R$ 39,90","targetUrl":"https://s.shopee.com.br/an_redir?origin_link=https%3A%2F%2Fshopee.com.br%2Fsearch%3Fkeyword%3Descorredor%2520de%2520pia%2520retratil%2520ajustavel&affiliate_id=18397081354&sub_id=vitrine_001","thumb":"thumbs/001.jpg"}];
+
+    function renderCatalog(items) {
+      const el = document.getElementById('catalogList');
+      if (items.length === 0) {
+        el.innerHTML = '<div style="text-align:center;color:var(--muted);padding:30px;">Nenhum produto encontrado com esse código.</div>';
+        return;
+      }
+      el.innerHTML = items.map(p => `
+        <a class="item" href="${p.targetUrl}" target="_blank" rel="noopener">
+          <div class="thumb-wrap">
+            <img src="${p.thumb}" alt="#${p.code}" onerror="this.style.display='none'" />
+            <div class="code-badge">#${p.code}</div>
+          </div>
+          <div class="item-info">
+            <div class="item-title">#${p.code} — ${p.productNamePt}</div>
+            <div class="item-sub">💰 ${p.estimatedPriceBr} • ${p.category}</div>
+          </div>
+          <div class="cta-btn">VER NA SHOPEE ➔</div>
+        </a>
+      `).join('');
+    }
+
+    function filterList() {
+      const q = document.getElementById('codeInput').value.trim().toLowerCase();
+      if (!q) { renderCatalog(allProducts); return; }
+      const numClean = q.replace(/\D/g, '');
+      const filtered = allProducts.filter(p =>
+        p.code.includes(numClean && numClean.length > 0 ? numClean : '___') ||
+        p.productNamePt.toLowerCase().includes(q) ||
+        (p.category || '').toLowerCase().includes(q)
+      );
+      renderCatalog(filtered);
+    }
+
+    function goDirect(e) {
+      e.preventDefault();
+      const q = document.getElementById('codeInput').value.trim();
+      if (!q) return;
+      const digits = q.replace(/\D/g, '');
+      if (digits) {
+        const padded = digits.padStart(3, '0');
+        const match = allProducts.find(p => p.code === padded);
+        if (match) { window.open(match.targetUrl, '_blank'); return; }
+      }
+      filterList();
+    }
+
+    renderCatalog(allProducts);
+  </script>
+</body>
+</html>
